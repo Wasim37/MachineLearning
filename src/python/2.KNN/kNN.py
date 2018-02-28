@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# coding: utf-8
 '''
 Created on Sep 16, 2010
 Update  on 2017-05-18
@@ -10,6 +10,7 @@ from numpy import *
 # 导入科学计算包numpy和运算符模块operator
 import operator
 from os import listdir
+from collections import Counter
 
 
 def createDataSet():
@@ -38,6 +39,8 @@ def classify0(inX, dataSet, labels, k):
     预测数据所在分类可在输入下列命令
     kNN.classify0([0,0], group, labels, 3)
     """
+
+    # -----------实现 classify0() 方法的第一种方式----------------------------------------------------------------------------------------------------------------------------
     # 1. 距离计算
     dataSetSize = dataSet.shape[0]
     # tile生成和训练样本对应的矩阵，并与训练样本求差
@@ -75,7 +78,7 @@ def classify0(inX, dataSet, labels, k):
     distances = sqDistances ** 0.5
     # 根据距离排序从小到大的排序，返回对应的索引位置
     # argsort() 是将x中的元素从小到大排列，提取其对应的index（索引），然后输出到y。
-    # 例如：y=array([3,0,2,1,4,5]) 则，x[3]=-1最小，所以y[0]=3,x[5]=9最大，所以y[5]=5。
+    # 例如：y=array([3,0,2,1,4,5]) 则，x[3]=-1最小，所以y[0]=3;x[5]=9最大，所以y[5]=5。
     # print 'distances=', distances
     sortedDistIndicies = distances.argsort()
     # print 'distances.argsort()=', sortedDistIndicies
@@ -101,6 +104,44 @@ def classify0(inX, dataSet, labels, k):
     # b=sorted(a,key=opertator.itemgetter(1,0)) >>>b=[('c',0),('a',1),('b',2)] 这个是先比较第2个元素，然后对第一个元素进行排序，形成多级排序。
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
+    
+    # ------------------------------------------------------------------------------------------------------------------------------------------
+    # 实现 classify0() 方法的第二种方式
+
+    # """
+    # 1. 计算距离
+    
+    # 欧氏距离： 点到点之间的距离
+    #    第一行： 同一个点 到 dataSet的第一个点的距离。
+    #    第二行： 同一个点 到 dataSet的第二个点的距离。
+    #    ...
+    #    第N行： 同一个点 到 dataSet的第N个点的距离。
+
+    # [[1,2,3],[1,2,3]]-[[1,2,3],[1,2,0]]
+    # (A1-A2)^2+(B1-B2)^2+(c1-c2)^2
+    
+    # inx - dataset 使用了numpy broadcasting，见 https://docs.scipy.org/doc/numpy-1.13.0/user/basics.broadcasting.html
+    # np.sum() 函数的使用见 https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.sum.html
+    # """
+	#   dist = np.sum((inx - dataset)**2, axis=1)**0.5
+    
+    # """
+    # 2. k个最近的标签
+    
+    # 对距离排序使用numpy中的argsort函数， 见 https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.sort.html#numpy.sort
+    # 函数返回的是索引，因此取前k个索引使用[0 : k]
+    # 将这k个标签存在列表k_labels中
+    # """
+    # k_labels = [labels[index] for index in dist.argsort()[0 : k]]
+	# """
+    # 3. 出现次数最多的标签即为最终类别
+    
+    # 使用collections.Counter可以统计各个标签的出现次数，most_common返回出现次数最多的标签tuple，例如[('lable1', 2)]，因此[0][0]可以取出标签值
+	# """
+    # label = Counter(k_labels).most_common(1)[0][0]
+    # return label
+
+    # ------------------------------------------------------------------------------------------------------------------------------------------
 
 
 def test1():
@@ -158,12 +199,18 @@ def autoNorm(dataSet):
     maxVals = dataSet.max(0)
     # 极差
     ranges = maxVals - minVals
+    # -------第一种实现方式---start-------------------------
     normDataSet = zeros(shape(dataSet))
     m = dataSet.shape[0]
     # 生成与最小值之差组成的矩阵
     normDataSet = dataSet - tile(minVals, (m, 1))
     # 将最小值之差除以范围组成矩阵
     normDataSet = normDataSet / tile(ranges, (m, 1))  # element wise divide
+    # -------第一种实现方式---end---------------------------------------------
+    
+    # # -------第二种实现方式---start---------------------------------------
+    # norm_dataset = (dataset - minvalue) / ranges
+    # # -------第二种实现方式---end---------------------------------------------
     return normDataSet, ranges, minVals
 
 

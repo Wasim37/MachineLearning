@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# coding:utf8
+# coding:utf-8
 '''
 Created on Oct 12, 2010
 Update on 2017-05-18
@@ -11,6 +11,7 @@ print(__doc__)
 import operator
 from math import log
 import decisionTreePlot as dtPlot
+from collections import Counter
 
 
 def createDataSet():
@@ -45,6 +46,7 @@ def calcShannonEnt(dataSet):
     Returns:
         返回 每一组feature下的某个分类下，香农熵的信息期望
     """
+    # -----------计算香农熵的第一种实现方式start--------------------------------------------------------------------------------
     # 求list的长度，表示计算参与训练的数据量
     numEntries = len(dataSet)
     # 下面输出我们测试的数据集的一些信息
@@ -68,10 +70,20 @@ def calcShannonEnt(dataSet):
     for key in labelCounts:
         # 使用所有类标签的发生频率计算类别出现的概率。
         prob = float(labelCounts[key])/numEntries
-        # log base 2
+        # log base 2 
         # 计算香农熵，以 2 为底求对数
         shannonEnt -= prob * log(prob, 2)
         # print '---', prob, prob * log(prob, 2), shannonEnt
+    # -----------计算香农熵的第一种实现方式end--------------------------------------------------------------------------------
+
+    # # -----------计算香农熵的第二种实现方式start--------------------------------------------------------------------------------
+    # # 统计标签出现的次数
+    # label_count = Counter(data[-1] for data in dataSet)
+    # # 计算概率
+    # probs = [p[1] / len(dataSet) for p in label_count.items()]
+    # # 计算香农熵
+    # shannonEnt = sum([-p * log(p, 2) for p in probs])
+    # # -----------计算香农熵的第二种实现方式end--------------------------------------------------------------------------------
     return shannonEnt
 
 
@@ -85,6 +97,7 @@ def splitDataSet(dataSet, index, value):
     Returns:
         index列为value的数据集【该数据集需要排除index列】
     """
+    # -----------切分数据集的第一种方式 start------------------------------------
     retDataSet = []
     for featVec in dataSet: 
         # index列为value的数据集【该数据集需要排除index列】
@@ -115,6 +128,11 @@ def splitDataSet(dataSet, index, value):
             # [index+1:]表示从跳过 index 的 index+1行，取接下来的数据
             # 收集结果值 index列为value的行【该行需要排除index列】
             retDataSet.append(reducedFeatVec)
+    # -----------切分数据集的第一种方式 end------------------------------------
+
+    # # -----------切分数据集的第二种方式 start------------------------------------
+    # retDataSet = [data for data in dataSet for i, v in enumerate(data) if i == axis and v == value]
+    # # -----------切分数据集的第二种方式 end------------------------------------
     return retDataSet
 
 
@@ -126,6 +144,8 @@ def chooseBestFeatureToSplit(dataSet):
     Returns:
         bestFeature 最优的特征列
     """
+
+    # -----------选择最优特征的第一种方式 start------------------------------------
     # 求第一行有多少列的 Feature, 最后一列是label列嘛
     numFeatures = len(dataSet[0]) - 1
     # label的信息熵
@@ -156,6 +176,28 @@ def chooseBestFeatureToSplit(dataSet):
             bestInfoGain = infoGain
             bestFeature = i
     return bestFeature
+    # -----------选择最优特征的第一种方式 end------------------------------------
+
+    # # -----------选择最优特征的第二种方式 start------------------------------------
+    # # 计算初始香农熵
+    # base_entropy = calcShannonEnt(dataSet)
+    # best_info_gain = 0
+    # best_feature = -1
+    # # 遍历每一个特征
+    # for i in range(len(dataSet[0]) - 1):
+    #     # 对当前特征进行统计
+    #     feature_count = Counter([data[i] for data in dataSet])
+    #     # 计算分割后的香农熵
+    #     new_entropy = sum(feature[1] / float(len(dataSet)) * calcShannonEnt(splitDataSet(dataSet, i, feature[0])) \
+    #                    for feature in feature_count.items())
+    #     # 更新值
+    #     info_gain = base_entropy - new_entropy
+    #     print('No. {0} feature info gain is {1:.3f}'.format(i, info_gain))
+    #     if info_gain > best_info_gain:
+    #         best_info_gain = info_gain
+    #         best_feature = i
+    # return best_feature
+    # # -----------选择最优特征的第二种方式 end------------------------------------
 
 
 def majorityCnt(classList):
@@ -166,6 +208,7 @@ def majorityCnt(classList):
     Returns:
         bestFeature 最优的特征列
     """
+    # -----------majorityCnt的第一种方式 start------------------------------------
     classCount = {}
     for vote in classList:
         if vote not in classCount.keys():
@@ -175,6 +218,12 @@ def majorityCnt(classList):
     sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(1), reverse=True)
     # print 'sortedClassCount:', sortedClassCount
     return sortedClassCount[0][0]
+    # -----------majorityCnt的第一种方式 end------------------------------------
+
+    # # -----------majorityCnt的第二种方式 start------------------------------------
+    # major_label = Counter(classList).most_common(1)[0]
+    # return major_label
+    # # -----------majorityCnt的第二种方式 end------------------------------------
 
 
 def createTree(dataSet, labels):
@@ -240,14 +289,21 @@ def classify(inputTree, featLabels, testVec):
 
 def storeTree(inputTree, filename):
     import pickle
-    fw = open(filename, 'w')
+    # -------------- 第一种方法 start --------------
+    fw = open(filename, 'wb')
     pickle.dump(inputTree, fw)
     fw.close()
+    # -------------- 第一种方法 end --------------
+
+    # -------------- 第二种方法 start --------------
+    with open(filename, 'wb') as fw:
+        pickle.dump(inputTree, fw)
+    # -------------- 第二种方法 start --------------
 
 
 def grabTree(filename):
     import pickle
-    fr = open(filename)
+    fr = open(filename,'rb')
     return pickle.load(fr)
 
 
@@ -300,5 +356,5 @@ def ContactLensesTest():
 
 
 if __name__ == "__main__":
-    # fishTest()
-    ContactLensesTest()
+    fishTest()
+    # ContactLensesTest()

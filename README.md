@@ -13,6 +13,7 @@
 ## 第一部分  分类
 
 * 1.) [机器学习基础](./docs/1.机器学习基础.md)
+    * [机器学习实战-复习版（问题汇总）](./faq/1.机器学习实战-复习版.md)
 * 2.) [k-近邻算法](./docs/2.k-近邻算法.md)
 * 3.) [决策树](./docs/3.决策树.md)
 * 4.) [基于概率论的分类方法：朴素贝叶斯](./docs/4.朴素贝叶斯.md)
@@ -20,7 +21,7 @@
 * 6.) [支持向量机](./docs/6.支持向量机.md)
 * 7.) [集成方法-随机森林和AdaBoost](./docs/7.集成方法-随机森林和AdaBoost.md)
 
-## 第二部分  利用回归预测数值型数据
+## 第二部分  回归
 
 * 8.) [预测数值型数据：回归](./docs/8.预测数值型数据：回归.md)
 * 9.) [树回归](./docs/9.树回归.md)
@@ -51,6 +52,122 @@
 
 * [@jiangzhonglian](https://github.com/jiangzhonglian)（片刻）
 
+> 模块负责人
+<table>
+  <tr>
+    <th>模块</th>
+    <th>章节</th>
+    <th>类型</th>
+    <th>负责人(GitHub)</th>
+    <th>QQ</th>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 1 章: 机器学习基础</td>
+    <td>介绍</td>
+    <td><a href="https://github.com/ElmaDavies">@毛红动</a></td>
+    <td>1306014226</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 2 章: KNN 近邻算法</td>
+    <td>分类</td>
+    <td><a href="https://github.com/youyj521">@尤永江</a></td>
+    <td>279393323</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 3 章: 决策树</td>
+    <td>分类</td>
+    <td><a href="https://github.com/jingwangfei">@景涛</a></td>
+    <td>844300439</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 4 章: 朴素贝叶斯</td>
+    <td>分类</td>
+    <td><a href="https://github.com/wnma3mz">@wnma3mz</a><br/><a href="https://github.com/kailian">@分析</a></td>
+    <td>1003324213<br/>244970749</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 5 章: Logistic回归</td>
+    <td>分类</td>
+    <td><a href="https://github.com/DataMonk2017">@微光同尘</a></td>
+    <td>529925688</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 6 章: SVM 支持向量机</td>
+    <td>分类</td>
+    <td><a href="https://github.com/VPrincekin">@王德红</a></td>
+    <td>934969547</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 7 章: 集成方法（随机森林和 AdaBoost）</td>
+    <td>分类</td>
+    <td><a href="https://github.com/jiangzhonglian">@片刻</a></td>
+    <td>529815144</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 8 章: 回归</td>
+    <td>回归</td>
+    <td><a href="https://github.com/DataMonk2017">@微光同尘</a></td>
+    <td>529925688</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 9 章: 树回归</td>
+    <td>回归</td>
+    <td><a href="https://github.com/DataMonk2017">@微光同尘</a></td>
+    <td>529925688</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 10 章: K-Means 聚类</td>
+    <td>聚类</td>
+    <td><a href="https://github.com/xuzhaoqing">@徐昭清</a></td>
+    <td>827106588</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 11 章: 利用 Apriori 算法进行关联分析</td>
+    <td>频繁项集</td>
+    <td><a href="https://github.com/WindZQ">@刘海飞</a></td>
+    <td>1049498972</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 12 章: FP-growth 高效发现频繁项集</td>
+    <td>频繁项集</td>
+    <td><a href="https://github.com/mikechengwei">@程威</a></td>
+    <td>842725815</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 13 章: 利用 PCA 来简化数据</td>
+    <td>工具</td>
+    <td><a href="https://github.com/lljuan330">@廖立娟</a></td>
+    <td>835670618</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 14 章: 利用 SVD 来简化数据</td>
+    <td>工具</td>
+    <td><a href="https://github.com/marsjhao">@张俊皓</a></td>
+    <td>714974242</td>
+  </tr>
+  <tr>
+    <td>机器学习实战</td>
+    <td>第 15 章: 大数据与 MapReduce</td>
+    <td>工具</td>
+    <td>空缺 - 有兴趣私聊片刻</td>
+    <td>842376188</td>
+  </tr>
+</table>
+
 > 项目贡献者
 
 * [@jiangzhonglian](https://github.com/jiangzhonglian)（片刻）
@@ -62,6 +179,8 @@
 * [@sheepmen](https://github.com/sheepmen)（徐鑫）
 * [@highfei2011](https://github.com/highfei2011)（ibe）
 * [@LeeMoonCh](https://github.com/LeeMoonCh)（Arithmetic）
+* [@caopeirui](https://github.com/caopeirui)（Veyron C）
+* [@Cugtyt](https://github.com/Cugtyt)（Cugtyt）
 
 > 加入方式
 
@@ -115,8 +234,8 @@
 
 | 深度学习 | 机器学习  | 大数据 | 运维工具 |
 | --- | --- | --- | --- |
-| [TensorFlow R1.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10030122) | [Sklearn 0.19 中文文档](http://sklearn.apachecn.org/) | [Spark 2.2.0和2.0.2 中文文档](http://spark.apachecn.org/) | [Zeppelin 0.7.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10030467) |
-| pytorch 计划中 | [机器学习实战-教学版](https://github.com/apachecn/MachineLearning) | [Storm 1.1.0和1.0.1 中文文档](http://storm.apachecn.org/) | [Kibana 5.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=8159377) |
-|  |  | [Kudu 1.4.0 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10813594) |  |
-|  |  | [Elasticsearch 5.4 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260364) |
+| [TensorFlow R1.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10030122) | [机器学习实战-教学](https://github.com/apachecn/MachineLearning) | [Spark 2.2.0和2.0.2 中文文档](http://spark.apachecn.org/) | [Zeppelin 0.7.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10030467) |
+| [Pytorch 3.0 中文文档 ](http://pytorch.apachecn.org/cn/0.3.0/) | [Sklearn 0.19 中文文档](http://sklearn.apachecn.org/) | [Storm 1.1.0和1.0.1 中文文档](http://storm.apachecn.org/) | [Kibana 5.2 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=8159377) |
+|  | [LightGBM 中文文档](http://lightgbm.apachecn.org/cn/latest) | [Kudu 1.4.0 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=10813594) |  |
+|  | [XGBoost 中文文档](http://xgboost.apachecn.org/cn/latest)  | [Elasticsearch 5.4 中文文档](http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260364) |
 |  |  | [Beam 中文文档](http://beam.apachecn.org/) |
